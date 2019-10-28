@@ -49,8 +49,8 @@ Protocol!
   - send the set of all messages that went before with each message
 
 Cardinality abstraction:
-  - # messages -> # ??? 
-  - ask about
+  - # messages -> # 
+  - reduce metadata to number.
 
 System of logical clocks, can number messages.
 
