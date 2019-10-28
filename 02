@@ -1,0 +1,66 @@
+
+Distributed Systems are Hard
+
+Why? Partially partial failure
+How to know what failed and to recover?
+
+Uncertainty around timing - did it fail or is it just taking a long time.
+- order messages so less uncertain? TCP?
+
+Fault tolerance ~= Redundancy
+Intrinsic vs extrinsic DS
+Payoff of distributed systems - scaling, module 4
+
+Course Structure
+- things run into each other
+- modules are called themes
+- bounce around
+
+1) Time and asynchronous
+2) Fault Tolerance
+3) Consistency
+4) Scaleout & Parallelism
+
+
+
+Network Models
+--------------
+Synchronous model, things take up to some time
+Asynchronous model, things could take up to forever
+- should make as few assumptions to prove correct
+
+Impossible Results
+- identifies a region of program-space where they can't be
+- Two General's Program / CAP Theorem <- look into it
+
+Given a lamport diagram, can imagine infinite number where they're all delayed different amounts but still in order.
+(easiest, rescale time)
+
+can't control timing, can't control order
+Nondeterministic timimg and race conditions mean outcome is nondeterministic.
+
+State! Point in time, all data. can store state or all events leading up to that
+
+what is protocol? shared algorithm among multiple parties
+- has rules/restraints
+
+desired properties? (they have to hold for all occasions)
+- ordered delivery (class of protocols)
+  - FIFO! 
+
+
+Anomalies: executions that witness a property violation
+Proprties: must be true for every execution
+
+Can think of properties as what anomalies can't happen.
+
+Casaulity: things happen in linear time. 
+- D.System consistent if nobody can see acasual behaviour
+
+"Anyone read Kant's 'Critique of Pure Reason'?" (no)
+
+unicast: Sent to each person independently with separate operations
+broadcast: Sent to many with one operation
+
+why care about order?
+TCP: FIFO guarantee for point-to-point. Reliable

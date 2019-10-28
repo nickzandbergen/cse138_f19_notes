@@ -1,0 +1,42 @@
+2019.10.11
+
+Causality/Logical clocks Alvaro's favorite subject.
+
+Totally order broadcast protocol is expensive
+- let's talk about the property instead.
+
+global property?
+- ex: 1 token (not 0, not 2+)
+- have to look at all of them.
+
+stitching of local snapshots being consistent - how?
+- potential causality! (happens-before per Lamport)
+- LC(a) < LC(b) or a -> b (with arrow)?
+- Can implement causal broadcast
+- can refute causality
+- concurrence = abscence of casaulity. a||b is concurrent symbol (a conc. b)
+  - if concurrent, run them at the same time. scheduling easier
+  - concurrency and parallelism related.
+  - can't detect not concurrency with scalar
+    - vector clocks at least as powerful as scalar clocks
+SCALAR: a -> b  => LC(a) < LC(b)
+VECTOR: a -> b <=> VC(a) < VC(b)
+
+Update VC with each message. +1 if message received counts as an event.
+
+sometimes vector clocks are more work than they're worth
+- could just send all the messages along
+
+lookup partial order
+
+for all a:
+ a <= a
+antisymmetric: a >= b & a <= b -> a = b
+transitive a <= b <= c -> a <= c
+basically: can only meaningfully comparse SOME elements.
+
+Charron-bost paper
+- vector clocks are the smallest representation of causality
+  - isomorphic to data needed
+
+Consensus is hard! 

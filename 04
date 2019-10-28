@@ -1,0 +1,32 @@
+New person! Lindsey
+
+Happens before ( -> ) definition
+- on same process line aand before
+- if a->b and b->c then a->c
+- if a is send M1 and b is receive M1, a->b
+
+Clocks! Physical vs Logical
+- can be timekeeping (physical) or operation-#-keeping (logical)
+- time-of-day clocks with leap hours/days are complicated
+  - screws up duration checking
+- cloudflare 2016 bug, leapsecond bug?
+- monotonic clocks strictly increasing
+  - python 3, import time, time.monotonic. # ms since restart
+  - bad for marking points in time, good for durations
+- use logical for relative ordering, time of day for individual points
+
+Lamport Clock: LC()
+- if a->b, LC(a) < LC(b)
+- increment at each event and pass along with messages
+* Schwartz and Mattern paper for diagram. 
+  Detecting Causal Relationships in Distributed Systems: in Search of the Holy Grail
+- Can figure out a->b so !a->!b (also with lamport clocks)
+
+Vector Clocks
+* Papers:
+  Friedemann Mattern, 1988
+  Colin Fidge, 1988
+- LC for each process?
+- each process has a spot in the vector
+- if not strictly comparable they're concurrent/independent
+read papers

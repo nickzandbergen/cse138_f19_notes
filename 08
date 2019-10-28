@@ -1,0 +1,51 @@
+2019.10.16
+
+There's an agenda!
+
+2 generals problem: have to ack every message and it can fail.
+Reliability protocols instead of ordering protocols!
+More modelling.
+Replication protocol.
+
+There's a hip-hop video somewhere. Note to self: set as ringtone.
+
+Lamport paper: physical clocks
+- didn't go anywhere.
+- how to read research papers: read them
+
+Simultaneous agreement
+- Not guaranteed in a system with unreliable communication
+- note: "not guaranteed" called "not possible" in lecture
+
+If not all messages are dropped, then the message is delivered
+- Keep resending message until ack. TCP? Yup
+- Can get duplicate messages
+
+At most once   - happens 0 or 1 times guaranteed.
+At fewest once - 1 or more times.
+Exactly once   - impossible in omission model
+
+arbitrarily long message delays make things bad
+
+if:
+a correct message delivers message M
+then:
+all correct processes deliver message M
+
+correct = didn't crash
+
+can fail between messages in a broadcast and then bad things happen
+
+Reliable Broadcast
+- before delivering M, broadcast it
+- if M is unseen
+
+Go to lower threat model with protocols
+then pretend you're in there and forget about the protocol.
+aka encapsulation
+
+Replication: things happen a lot so they'll probably do things 
+(but they might happen more than once)
+
+
+

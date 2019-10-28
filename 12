@@ -1,0 +1,46 @@
+2019.10.25
+
+Last lecture on midterm
+
+Network partitions:
+- some part of the network can't talk to another part
+- what if two halves each elect their own primary
+- how we fix
+If partitions are inviolate, no inconsistency can be witnessed
+- thus, bad things when partitions can fix themselves
+
+Partitions are under the omission model.
+
+Note that oracles might be partitioned. Or everything else might be!
+
+Total Partition: two sub-networks formed
+Partial Partition: some computers can't talk to each other.
+- partial worse than total: someone might notice they don't talk to each other
+
+Consistency: looks like one computer from the outside <- safety
+Availability: responds timely <- liveness
+Partition tolerance: behaviour is defined for partitions. *
+
+Pick two.
+
+Since we're distributed, partition is an auto-pick
+(so it's between consistency/availability)
+
+PB or CR is CP: goes down.
+
+QR is AP/CP 
+- might want a wrong answer over none (youtube)
+- might want a correct answer or nothing (banking)
+
+Zookeeper oracle: keeps track of server stats.
+- strongly consistent ( what if it's partitioned? no answer)
+
+PaxOS! It's a thing
+
+Want majorities such that between any two majorities their is a common member
+
+State Machine Replication (SMR) will talk about later
+
+K-version programming: bunch of people do the same thing differently and one of them'll work!
+
+

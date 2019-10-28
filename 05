@@ -1,0 +1,17 @@
+2019.10.07
+Lindsey.
+
+Protocol: rules of communication
+- infinitely many runs of the protocol. (probably exceptions but those would be boring)
+note: distance is meaningless on Lamport diagrams, ordering most important
+-might be different for physical clocks.
+Anomaly: property violation.
+
+FIFO: messages received in the order they sent
+- If process P sends M1 before M2, M1 is received before M2
+
+totally-ordered delivery: FIFO between everyone?
+ 
+Causal broadcst algorithm:
+on send, increment
+on receive, deliver if +1. If too high, buffer

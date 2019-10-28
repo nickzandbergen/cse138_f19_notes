@@ -1,0 +1,49 @@
+2019.10.18
+
+Readings! Don't stress out. "Most undergrads aren't expected to read research papers"
+Lamport: note '->' vs '=>' in paper
+
+Crash likelihood: p^n where n is number of computers
+
+Failure threshold: how many computers given how many things fail
+
+Strong consistency: A replica gives the same response as the original
+                or: an external observer can't tell which is which
+It's making a distributed system look like a single system
+
+Extrinsic vs intrinsic distributed system?
+Extrinsic: looks like one thing from the outside, impersonates a single computer
+intrinsic: looks like lots of things: IoT, (sigh) blockchain
+
+Consistency matters more for ext. DS?
+Datebase: stale read anomaly for dist. database.
+Race condition? Yup, write conflict.
+
+Distributed locks are problematic: just layers token problem on it
+-(also if only 1 computer can do something, why distribute?)
+
+Total order good for replication - can tell what order things should happen in
+
+Primary backup replication:
+- aka RAID1?
+- Write-through basically
+- There's some restart backup stuff in practice
+- After all backups ack, at commit point
+  - can return data
+  - don't return before because ... might see conflict?
+- Durability: if write W is acked, it's stored on a correct replica.
+Can't ask backups: what if someone already overwrote it? Have to ask primary.
+  - also primary only gives new value after commit point
+What if primary fails?
+
+Primary is single point of failure. 
+- Can tell which backups are up?
+  - View change has to happen between backup faults
+  - Atomic part of atomic view change protocol is hard. 
+    - Consensus part is impossible per FLP?
+- Oracle manages primary/backup distribution
+  - replicate oracle 
+  - Paxos algorithm used in db
+
+STONITH - make a slow or dead node, positively dead.
+

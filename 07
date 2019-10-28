@@ -1,0 +1,61 @@
+2019.10.14
+
+Async/time
+
+Consistent global snapshots - there's a protocol for this. See supplemental reading.
+
+Lamport has a paper on consistent global snapshots (CGSs)
+- State detection algorithm
+
+Example problem: token passing
+- 1 Token at all times and only 1.
+- Global: have to look at every process
+  - "at the same time"
+  - snapshot = state
+  - prefix: goes back to the beginning of time
+  - snapshot is a prefix
+- global snapshot, S, is union of all local snapshots
+- CGS: for all events, a -> b. so if b is in the snapshot, a has to too.
+  - don't cut lines stranding the reception of a message from the sending
+  - rephrase: don't include message received while NOT having message send
+
+a || b == a -\> b & b -\> a
+Concurrency is not transitive.
+Ex: a -> c
+thus, c||b and a||b but not a||c
+
+ask: could you represent casuality using fewer bits but with a probabilistic data structure/algorithm?
+
+note: ideal (everyone can see it, sync'ed and perfectly accurate) clock is same power as LC
+
+vacuous correctness: ?? related to antecedent
+consequent: 'real' correctness
+
+ex: FIFO: if proc. P, sends M1 then M2, THEN M1 receives M2
+
+Safety versus liveness?
+Safety property: bad thing never happens.
+- b/c it describes bad thing, an unsafe violation is witnessed by finite violation
+  - does not require infinite lines
+  - Do any require infinite lines?
+Liveness: all properties not safety properties
+- Easy to be safe if nothing interesting happens
+- 'good thing eventually happens'
+- liveness violation requires infinite lines to show
+
+Fault Model!
+- Security agrees on threat models, then guard against those
+- no faults: there are no faults
+- fail-stop: fail on crash and stop. Failures can be detected
+- Crash: fail on crash. Failures can't be detectedd
+- Ommission: messages can be lost, things can not happen suddenly. <-- internet is here
+- Byzantine: deliberately adversial. Anything could happen.
+  Re: bitcoin. Could have malicious failures
+  - Byzantine is very hard. BFT = Byzantine Fault Tolerance
+
+"yahoo-you don't know what yahoo is-yahoo used to be a big company.."
+- Did cost/benefit analysis: byzantine wouldn't have done anything
+- Life-critical  systems are byzantine. 
+- train vs plane: train is failsafe, plan is fail-fall
+
+Two generals problem: see wikipedia

@@ -1,0 +1,61 @@
+FIFO recap - GHOSTBUSTERS
+
+note to self: this class starts at 1:20.
+
+Causal (cause - al): a -> b, then t(a) < t(b)
+- called by Lamport: happens before
+- if a causes b, a is delivered before b
+- remember alice-bob gadget: broadcast and response to broadcast message
+
+FIFO only constrains between 2+ people and 2+ messages between some people
+- must deliver in order of generation
+
+Causal implies FIFO (?)
+
+total ordering is a thing. look into.
+- everything is in order they were sent
+- all actors receive messages in same order they were sent
+  - can construct example without broadcast?? (ask later)
+=
+- transitive property induced, thus a -> b -> c -> d... etc
+  - kinda smoosh it all into a master timeline
+causality = reachability in space/time.
+- can you find forward arrows in path
+
+counterfactual reasoning: had 'a' not happened, 'b' would not happen. v. strong, v. hard.
+concurrency: poisoned by real time. a concurrent with b is a||b
+
+hierarchy of ordering guarantees:
+causal > FIFO
+total and causal relation is iffy
+total and FIFO can happen at the same time, stronger than either.
+Total-Causal strongest. Can really have any two/one
+
+express
+
+Protocol!
+- what messages are expect, when received messages are delivered,
+  - received is an event that happens to a computer, 
+    delivered is an event that the protocol decides to happen
+  - deliver when you know it won't mess up order.
+
+1) TCP
+2) P2P system
+  - don't want to store billions of number
+  - tradeoff between messages sent/local state
+  - ack each message. takes more time
+3) Total information protocol
+  - causal, costly, wouldn't actually do
+  - send the set of all messages that went before with each message
+
+Cardinality abstraction:
+  - # messages -> # ??? 
+  - ask about
+
+System of logical clocks, can number messages.
+
+Uncertainty in timing (asynchronity) and partial failure:
+- you can't tell if it's dropped or taking forever.
+Timing is important. Why?
+
+Could remove partial failure if synchronous.

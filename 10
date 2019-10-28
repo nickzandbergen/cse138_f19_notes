@@ -1,0 +1,40 @@
+2019.10.21
+
+Midterm a week from Wednesday. Actually already started.
+
+How to know when failure chance is independent?
+
+Commit point = when reads return writes
+View - Oracle keeps track of who's who. Oracle can be distributed.
+
+Addressing - who's primary?
+- Oracle tells client everything (doesn't scale)
+- DNS Recursive routing - Backup could proxy primary.
+- DNS iterative routing - Backup redirects client to primary
+
+Multiple requests
+- How to keep track of each of them?
+  - just deliver each after commit point
+- Use FIFO
+
+Performance
+- How many messages?
+- Latency: client-perceived wait time
+  - depending on distribution, average latency can be meaningless.
+  - "every time I do a vanity search on my name..."
+  - Netflix aims at 99th percentile latency: what's the longest wait?
+- throughput: information/time
+  - transactions per second
+
+Layer FIFO under Primary Backup (PB)
+- then math latency: RTT + longest backup write/ack
+
+How to find Expected value of max(N binomial distributions)? (could just simulate)
+
+ why not 1 big computer? because better protocol?
+
+Chain replication:
+send message along to each
+- tail is commit point
+- has to go through each
+Chain has better throughput but poorer latency 

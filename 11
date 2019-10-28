@@ -1,0 +1,58 @@
+2019.10.23
+
+Materials! Can bring paper + pens
+
+Latency - measured in time.
+Throughput - measured in transactions/operations
+
+Goodput? What is it?
+- amount of useful work?
+- protocol overhead may or may not be considered.
+- maybe necessary work?
+  - badput: unnecessary work
+
+Resilency: 
+- how many faults can happen?
+- how fast can it recover?
+  MTTR: Mean Time to Recover
+
+Reliability/Availability:
+- uptime ~= availability
+- reliability is %chance system is up.
+  - some never work, so graph spikes at start
+  - then decreases:
+   ___
+  /   \---___ <--- graph
+
+Can derive uptime from EV[errors%] * MTTR
+MTBF: Mean time between failures
+
+Uptime = MTBF / (MTBF + MTTR)
+
+Recovery oriented computing: things are easy to fix?
+- fix via restarts, make restarts fast
+
+Byte-addressible non-volatile memory:
+- DIMM slot, byte addressable.
+- Survives power-off
+- No power cost
+
+Chain replication
+- Strong consistency: est. by the primary
+- total order: how to order the reads?
+  - head orders writes, tail orders reads
+
+PB
+- what if message 2 is received after message 1 but has a commit point
+
+Quorum replication
+- all nodes are equal
+- fat clients: they are used for computing
+- not strongly consistent
+- partition tolerance
+
+N = # replicaes
+W = # of acks req. (quorum) for successful write
+R = # of acks req. for reads
+
+Can tailor for consistency or availability.
