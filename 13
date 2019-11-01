@@ -1,0 +1,9 @@
+2019.11.01
+
+Time/freedom to work and look at industry
+
+Regression testing: fix while tests fail. run all tests every time
+
+Root cause analysis: look at buggy input, see which version breaks.
+
+Distributed programs care about environment (other computers break, dropped packets) moreso than centralized programs.
