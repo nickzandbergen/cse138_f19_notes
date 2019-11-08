@@ -1,0 +1,43 @@
+2019.11.06
+
+Trip report!
+
+Peter's on the Baskin Council for Diversity/Inclusion/Equity
+- bug him about that
+- his students are rad
+- 2FA woes
+
+consistent hashing a timesink
+- still doin' it w/ virtual nodes
+- regular hashing
+
+Consensus:
+- have to trick outside observer
+- 
+
+Things:
+View stamp replication
+PaxOS - easier to teach?
+Raft  - also a thing?
+
+Agreement:   If a node decides X, all decide X (safety)
+Validity:    X must have been proposed (safety)
+Termination: ends evetually
+
+FLP impossibility (Fisher-lynch-patterson)
+- impossible sometimes with only one process crashing
+  - under async protocol
+- can circumvent with random algorithm. somehow?
+  - randomness harder to make correct
+
+Gossip/anti-entropy
+- pick random peers to talk to
+- hard to break consistently, which makes peter sad
+
+Leader protocols/failure detection
+- doesn't care if there's two for a bit
+
+2Phase commit
+- put in box, wait for ack
+  - then do second half when asked?
+- also layer with reliable deliver

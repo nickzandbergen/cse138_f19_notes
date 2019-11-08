@@ -1,0 +1,53 @@
+2019.11.08
+
+Get those exams at office hours.
+
+Consensus algorithms!
+
+Paxos is complicated. This is bad.
+- learn Paxos from first principles, iteratively
+
+Atomic Commit
+(Jim Grey is 2PC dude and a hero)
+
+Marriage as a protocol!
+- also property?
+- people are married if marriage happens
+
+David Sheridan and Sheen ?? have 3-phase commit, which is buggy in async
+- Noodles
+
+2PC hangs on delayed acks.
+- Can fail when coordinator decides to: fail now and know for sure.
+- Fails whenever a participant fails
+- Can ask if anyone heard a decision
+  - or voted no, because 1 no decides the whole thing
+Coordinator is a single point of failure.
+- what if you distribute it??
+
+1) Agreement   - safety?
+2) Validity    - safety
+3) Termination - liveness
+
+Paxos: every node can be a proposer
+- consensus could be any value.
+
+Consensus Roles
+1) Proposer: nodes who can suggest things
+2) Acceptor: weighs in on decisions
+3) Listeners: optimization, ignore for now
+Nodes could be any combination of roles, but we're assuming they're only one
+
+One algorithm: pick first arrival.
+
+Straw dudes: single acceptor, violates termination 
+	(or potentially agreement with more than one acceptor.)
+   - need more than one acceptor because one doesn't work v. well.
+   - things only decided if majority of acceptors agree.
+   - No longer accept first value: accept all values, overwriting?
+     - what if someone changes?
+     - check before you send a new thing
+  - TOCTOU vulnerability: time-of-check to time-of-use: what if it changes between check/read?
+- Make a tiebreaker for things! (via unique identifiers)
+  - pad right bits with MAC address.
+PAXOS PICTURES
