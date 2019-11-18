@@ -1,0 +1,25 @@
+2019.11.15
+
+PaxOS solves consensus
+- except it might take forever
+
+proposal numbers monotonically increasing and unique
+- broadcast prepare message
+  - all acceptors respond back
+
+Acceptors have to store 3 things
+- What's my accepted value?
+  = and the proposal number
+- What's the biggest number seen?
+
+ALGORITHM
+
+P (proposer) and A (acceptor)
+
+P: Pick proposal number N, broadcast Prepare(N)
+A: If n > minProposal (bigger than max), return(AV, AN)
+P When majority, if AV != upside-down T
+  Broadcast Accept(n, value)
+A: Return MP, current max proposal number
+P: Did any return not our number? Then we're doomed.
+
