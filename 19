@@ -1,1 +1,52 @@
 2019.11.18
+
+Paxos/multi-paxos/SMR/globally-ordered FT logs
+- Fault tolerant
+
+Multipaxos typically used for globally ordered log
+
+Want to be able to read from any node and get the same answer
+"There's a hard thing to do with paxos that has very little to do with paxos"
+
+Deterministc algorithm might still depend on random outcomes, such as message delay/who crashes
+- there is a universe of possible executions
+
+Grad scholars paper: Miguel Castro and Barbara Liskov: Practical Byzantine Fault Tolerance
+
+Why not wait for everyone? Someone might be down.
+- Have to wait for majority b/c quorum
+  - don't have to wait for more, again might be down.
+ 
+
+Note to self:
+ Crash: alvaro with a hammer
+ Omission: alvaro with an eraser
+ Error: alvaro with a pencil too
+ Byzantine: alvaro, but he could be anyone
+
+Mutlipaxos, accepting many in order:
+- agree on one dude to agree on things
+- so only have to prepare once to figure out the entire log
+
+Making Paxos, Practical. Praxos/Paxtical?
+Phases:
+ 1) Prepare: check if anyone else proposed or got accepted
+    - review state machine response
+    - check if higher number
+(note that there's a leader election so we can say there's probably only one leader)
+
+2) Figure things out: propose
+
+3) Do 2) until a higher number is gotten back, then stop. (otherwise still leader so lead)
+
+Raft is a thing. Paxos but simpler. Re: there's a fancy webpage about it.
+- start with trying to get a log?
+- notes that paxos with iteratively proven
+Paxos -> MultiPaxos -> There's a log
+what if "->" introduces bug?? bad!!
+
+Last seven minutes of class? Strong consistency!
+
+Why commit point? ordering
+
+Durability: tell people it's ok and it is
