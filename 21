@@ -1,0 +1,77 @@
+2019.11.22
+
+CAP theorem: strongest non-strong consistency is causal, weakest strong consistency is strong consistency
+- if causal, then availability
+- if strong consistency, then no availability
+
+Databse
+- ACID property
+Atomic
+Consistency
+Isolation
+Durability
+
+database typed/nested structures
+- lookup by value: how?
+  - two-way hash?
+  - another key-value store for the value you want to lookup by
+
+Operations: queries
+- natural language programs: select max salary for example
+- basically sending programs to the database, produce answer based on totality
+
+DB vs KV: can query a bunch of things at once, atomically.
+- move money, debit/credit at once. no money created or destroyed.
+
+concurrent programming? atomic block.
+- enough constructs to tell what should be atomic.
+Jim Grey invented transactions: should've been extensions to languages.
+1) begin <- start atomic block
+2) commit <- install all changes
+3) abort <- don't install all, quit
+
+2PC gives atomicity
+
+Isolation: you can pretend you're the only one on the database 
+- locks used to make sure only one thing is fiddled with at once.
+
+How to update multiple things?
+- multimessage
+- start message, content messages*, end messages
+
+U of W: TAPIR – the Transaction Application Protocol for Inconsistent Replication
+
+Serializability: strictly stronger than strong consistency. rules out more executions
+- bank example: 
+ two transactions
+ T1 = [A += 1, B += 1]
+ T2 = [A *= 2, B *= 2]
+If interleaved, bad. for example: A += 1, A *=2, B *=2, B += 1 
+basically T1 -> T2 and T2 -> T1 ok, but a result that's neither is bad.
+
+Scheduling!
+- notion of scheduling equivalence: equiv. if:
+  1) View equivalence: equiv. if leave database in the same final state and read ordering is the same
+     - same things happen as far as you can tell.
+    OR
+  2) Conflict equivalence: (used in practice)
+     - if all conflicting operations happen in the same order in both schedules
+     - conflicting operations are operations operating on the same object 
+     - all conflicting operations happen in the same order
+       - writes conflict, reads don't with other reads. some writes (+=) don't conflict?
+     - two ops conflict if: same object and one of them is a write
+   b/c computationally tractable? (ask)
+
+A serial schedule: everything happens one after another. ends then begins, no parallelization
+why not just do one, lock, wait until done, unlock, next
+- IO latency means downtime, which could do something with.
+  - disk stalls 10^2ish slower
+
+Can serialize a schedule if it's equivalent to some serial schedule
+- similar to strong consistency: if you can't tell the difference from distributed
+REDACTED: 3 DAYS of ALVARO on DATABASES (sadly)
+
+Pendula: swings in opinion. This happened with strong consistency, databases, ACID
+- NoSQL has to deal with fails/redundancy
+  - basically lower level tradeoff: control to hassle
+- Google doing fast ACID database

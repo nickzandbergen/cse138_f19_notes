@@ -1,0 +1,70 @@
+2019.11.25
+
+there's a house
+
+*Agenda*
+ CAP-GAP
+ Concurrency control
+
+Identify what can be concurrent? More parallelism!
+- banks are backed by databases? maybe! messy reality
+  - distributed ledgers and periodic balancing
+Dynamics: Pessimistic: check a bunch, or optimistic: it'll probably be fine, check once.
+- Dynamo: take write figure out later
+
+Pessimistic CC mechanisms
+1) Force some Xacts to wait
+2) Abort transactions
+Canonically lock mechanisms? (Acquire/release phase)
+(two phased locking algorithm)
+
+Read and write locks: 
+- read locks can be combined.
+- only one write lock at a time
+
+2PL Algorithm:
+Acquire locks, if incompatible locks goto queue
+
+view serialization versus conflict serialization?
+- alvaro will bring in an example later
+
+"nobody's ever going to do everything, ever" - on deadlock
+
+Choose newest Xact for taking locks from
+- preemption!
+
+tl;dr: Pessimistic waits for all locks just in case
+
+Optimistic: do it, check if conflict just before commit
+- if so, rollback
+3Phases: Read, validate, install
+
+Relies less on time and more on disjoint - set intersections.
+
+Pessimistic vs optimistic basically cautious vs YOLO
+- if you've got a bunch of different objects, optimistic is good b/c conflicts are unlikely
+
+Concurrency models are done with simulations.
+Wisconsin team had pessimistic-favored sim, Berkeley had optimistic-favored.
+MIT did PhD work, said pessimistic was better if there wasn't infinite resources.
+
+Outsource cloud to peers
+
+Anti-entropy ~= gossip
+(periodic communication)
+
+Spec might be updated.
+
+Weaker than causal, session guarantee
+- Stale reads and write conflicts are telling
+Sometimes stale reads are okay/nobody can tell
+The writing client can tell.
+- Read your writes: reads after ack return written value
+- Monotonic reads/writes: newest thinig
+  - reads: get newer/equally new thing
+  - writes: don't overwrite new things
+- Writes follow reads
+(ordered in increasing difficulty)
+(still all weaker than causal consistency tho)
+
+Next up: P2P systems

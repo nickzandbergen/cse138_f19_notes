@@ -1,0 +1,95 @@
+2019.11.27
+
+P2P lecture
+
+- Outcomes!
+
+~Peer-to-peer:
+Need to find all nodes in things
+Decentalized, no one admin
+Thousands of computers (scalable)
+- thus, high churn (nodes leave/join)
+- 20 people might pop up all of a sudden
+Federated: many different organizations doing things
+Untrusted/trusted sources
+How to join? (discovery)
+
+Want to create zero incentives for dishonesty
+- best strategy is to make bad guys act like good guys
+  - don't have to care if they're secretly bad - doesn't matter?
+
+How to distribute Metallica songs?
+- buy a server, distribute it from that
+  - bad because single point of failure: the server 
+- Bandwidth expensive
+
+Napster! Scalable Piracy (yarr)
+- cool trick: clients can provide bandiwdth
++ solved discoverability: could just ask napster for network
+  - stored metadata
++ Scalable, like MapReduce
+- Eventually got shut down by The Man
+
+GNUTella (pronounced Nutella)
+- every node the same
+  - know about some nodes, their neighbors
+- Have to bootstrap with seed file
+  - one other computer: then ask their neighbors
+- Irish exit: leave without saying anything 
+  ( do this and let everyone else figure it out eventually)
+- Publish interest to node N
+  - node N responds with file if it has it 
+  - else: propogate request with requester address
+- Maximum requests only bounded by longest length
+Goals:
+1) Low # of hops to find something
+2) Don't have to store too much information
+3) Stable to churn
+Lookup: binary search with requests
+- has a finger table
+ [index | node ]
+  n       node 2^n away on the circle and hash
+- Given a hash, find farthest away node with a still lower hash
+- Logarithmic data storage based on # nodes
+- Finger table is a linked list, consistent hashing, and binary search
+Need a way to add nodes to the circle: stabilization protocol. (chalk despair happens around here)
+- Have new node ask successor who their predecessor is, then tell both they're between them.
+- Anomaly: break one ring property with two different circles
+  - Someone proved this property (and others) weren't upheld
+  - There will be a paper later (on Cord?)
+
+Note: having to ask every node isn't scalable
+- consistent hashing is a thing, who knows how it works
+- ping alvaro at 2:15
+
+Post-Napster: Torrenting!
+- More decentralized
+
+Victoria & Matt at Ebay
+(SRE) and (backend)
+Software Reliability Engineer: working
+Lineage Driven Fault Injection: LDFI
+
+678 dashboards for Ebay status
+(dashboards are graphs)(which metrics to look at, should look at distribution)
+Part of it is automating/aggregating and boiling it down to important stuff
+- tracing through services 
+- there are good/bad executions, find differences and alert if they happen
+  - examples of people not being paid, human cost. 
+
+Peter asks: what should people have learned?
+- coding one-person things to collaborative:
+- Project scale! How much testing!
+
+Blackholing: traffic vanishes going to a node. node erroring very quickly! jobs finished but no work done?
+- how to triage: can't notice until it's really bad.
+- it's like slow bleed (which is ??)
+Is ebay hiring??? maybe!
+
+Matt's on applications! Microservices!
+- bug issue: items dropped on refresh
+  - cause: they were just taking it a while
+- pools/capacity are things
+- everyone's really nice
++ Ebay has tech diversity issue
+

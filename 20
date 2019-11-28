@@ -1,0 +1,64 @@
+2019.11.20
+
+i. consistency
+- weaker models than causality - "session guarantees" per Doug Terry
+  - will always see own writes, but maybe not others
+
+Multi-object consistency
+
+Paxos is expensive in:
+0 implentation time, it's complicated
+1 network, it sends lots of messages
+2 timewise, 2RTT most of the time (1 in multipaxos)
+
+Lamport says that Paxosis inveitable.
+Vive La Difference, paper
+
+Nontermination still an issue. Might take forever.
+Paxos is CP
+- consistent, partition-tolerant
+
+How does paxos maintain consistency?
+- total order
+- SMR
+
+"as I argued until I was blue in the face and am now like psyche..."
+
+How to do strong consistency without total order?
+- just total order over operations in the same kinda domain
+- ex: x = 1, y = 1: doesn't matter which happens first
+
+total order over all conflicting operations
+
+functional programming immutability property
+- patterns easier to reason about conflicts
+
+knowing when consensus has to be a thing
+
+aka: when to make it with blockchain and when not to
+
+R : eval function
+S : sequential specification
+D : ??? presumably consistent runs
+
+R(S) -> all possible runs of S
+- possiblity space thing, possible outcomes.
+
+if R(D) is a subset of R(S), then strong consistency
+
+Consistency models
+
+Smaller outcome space is easier to reason about, stronger consistency constrains more
+
+Which consistency model to use? Depends! Popular consensus changes
+
+eventual consistency: if you don't poke it everything will be consistent
+
+Someone says causal is the strongest consistency model still available.
+- alvaro sez so far
+
+causal: can read the cause of things
+
+effect w/o cause: miracle?
+
+also have enough information to know that the cause can't be found.. 
