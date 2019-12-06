@@ -1,0 +1,82 @@
+2019.12.02 - 138
+
+Get rain gear
+- waterpoof pants
+- rainshoes
+
+Mapreduce, one of 3 real systems
+- distributed computing, abstracts away complexity/load balancing
+- take away power, give ease of use?
+  - low vs high level OR declarative vs imperative 
+
+2002: mapreduce controversy
+- massively parallel processing an old concept
+- Open source clone: Hadoop
+
+MapReduce: a giant step backwards
+- everything Jeff Dean did was in parallel database
+- they didn't do anything new, just didn't cite
+  - still important
+- Zeitgeist of programming
+everything was once old
+
+Distributed computing problems:
+- how to make bookkeeping efficient when they can't be parallelized?
+  - see amdahl's law
+- Zipf's law: word frequency
+Steps of word counts
+- for each word, wordcount[word]++
+- this was in the paper, shhhh
+
+LSM people?
+
+Ask about distributed hash maybe?
+
+Virtually every computation they wanted to do had a Zipf distribution
+- 
+
+Inverted Index?
+- Thing -> place mapping
+make an index of where words occured
+then, search is simply all things that contain all the words
+- document frequency
+Distributed grep: it's dope
+- run it on every computer? why not!
+
+What is a framework?
+- library gives additional functionality, framework is more of a paradigm shift
+
+framework -> code -> library
+- are programming languages frameworks? (philosophical)
+parallel as possible: "embarassingly parallel"
+- should be called awesomely parallel: it good
+
+MapReduce:
+Map  k1,v2 ->list(k2, v2)
+Reduce  k,list(v1) -> list(v2)
+
+Optimization in paper: local reduce, if you can reduce without knowing everything
+- database things, ask about later
+- can't use map with anything that looks at total state (join, groupby, etc)
+Client brings map() and reduce()
+
+Load balancing - how to balance?
+- if you put it all on one computer, why parallelize?
+Data locality: don't want to have to move it
+- near data on near machines
+- minimize computational skew
+
+Every mapper will write a file for a reducer when there's enough data on average
+- master just tells reducer where a mapper has files for them
+  - reducers pull, then commit
+(there's a giant distributed filesystem, Google File System
+- fault tolerance andd performance
+  - what if failure? just have another machine do the failed part
+  - do we care if a node is dead or just slow? no, start it on another node
+- what if a master goes down? SMR with paxos or raft! backup masters
+  - "the first person to do this was me!" - Peter Alvaro
+    - there's a paper
+- give the job to someone, then give the job to another person
+  - alvaro, on grad students
+- durability or throughput? change how much you speculate
+

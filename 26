@@ -1,0 +1,70 @@
+2019.12.06
+
+LSD Lab: Somehow, it worked
+
+Reach out to alvaro two years down the line about retrospective
+- college as not vocational training
+
+Buzzwords!
+.Causal
+.Zookkeeper: distributed consensus thing
+  - not paxos. is an oracle.
+  - looks like filesystem
+.Azure: cloud at microsoft
+.Kafka: distributed queue, w/ pubsub semantics
+   - implements Raft
+.Spark: mapreduce in memory
+.ETCD
+ - also consistent
+.Vagrant
+.AWS: amazon web services 
+.Kubernetes
+.Virtualization: simulate computers. Virtual machines. Opposite: running on bare metal
+  - hypervisor is tiny kernel that attachs to/from full OS
+.Microservices:
+.IoT: networked appliances. p2p and sentience
+.Service mesh: abstraction for getting services 
+
+Learn cloud principles in general, API on per-project basis
++ cloud allows elasticity, only paying for what you use
+  - based on VMs
+Edge computing
+
+Causality & Provenance: beach lab meetup redux
+- lamport clocks, vector clocks, sets of previous events
+- if concurrent then embarassingly parallel
+
+*2PC: sometimes doesn't work?
+- prep phase: vote yes if can do
+- controller can't decide abort if therre's failed participants
+  - Q: 2PC stuck question
+-  controller could/couldn't decide to abort, depends
+ - state assumptions
+Stuck on phase 2? Look at this
+
+Atomic Commit!
+- agreement
+
+Random leader election:
+
+2PC look at??
+
+Consistency/conflicts/ordering
+Conflicts occur with some orders. Consistency is when there's no conflicts between things
+Total order has no conflicts
+
+Disjoint state updates can't conflict
+- requires more knowledge about the event
+
+Total order doesn't have to care about semantics
+
+Careful replacement theory: encode into programming language
+- only pay for consistency you need?
+
+Spidey sense to navigate application needs and tradeoffs
+
+Latency verus throughput
+
+Study MapReduce paper: there might be a pseudocode problem on the final for a MapReduce problem
+
+Consistency from extrinsic versus intrinsic

@@ -1,0 +1,106 @@
+2019.12.04
+
+Pat Helland presenting.
+
+Ye olden times: Oracle did it
+
+Building on quicksand: how to take patterns from things
+Pat: his reputation exceeds him
+- knew Peter's advisor for ~25 years
+- DB work since 1978 (!!), 1973 college start
+- turns industry things into papers
+  - Tell a story with a paper
+Did "Mind your state for your state of mind"
+- durable state semantics
+
+Put REST API on app, make storage
+- things happen
+- 1999 presentation: trust boundary for apps
+  - service-oriented apps. Amazon changed to invert structure
+- Leave atomicity to systems
+  - make things all or nothing
+N-tier systems
+: load-balance pool
+- pat worked on dynamo!
+each tier adds latency, got to make lowest level fast
+- iterative rollout: check system health throughout
+  - do not roll out all at once
+- authenticate app identy: roll-based security
+: data is security to app
+- Session state vs Durable state
+: session is between endpoints
+Inside data: SQL/relational
+Outside data: messages/files/KV (has per-item versioning)
+
+Disk blocks: they can trash discs
+Write went: Old -> trash -> New
+(if failed in trash stage: bad)
+- Solve via mirroring
+- could identify garbage: ECC
+Ping-ponging: care replacement on same log (store V2 on spare area)
+
+Then: careful replacement across time/space is transactional
+- reliable messaging
+RYW: Read your writes
+- linearizable: have to wait for a long time on sick/dead servers
+- strong consistency isn't available
+- Distributed: can know where you write or when, but not both
+SLA: Service-level agreement is a pact with the client
+SOA: Objective
+SLI: indicator
+
+"The Tail at Scale" by Jeff Dean and Luiz Andre Barroso
+
+Use different store for different things: C vs A tradeoff
+Immutability: ex, UUID
+- using only immutability means you always read your writes
+  - Can put ACID guarantees on a bunch of stuff
+
+Same process -> different proocess
+- added transactional boundaries
+Shell Finkelstein and Pat are buddies
+
+Microservices bad at session states
+- lots of different replicas of the service
+ - client could talk to any service
+- Microservices good SWE
+  - have 10-12 people teams working on them
+Transactions across microservices: sagas?
+- want to talk to peter
+transactions only on single stores. 
+"Identity by any other name" = Pat's paper on identity
+- bind something to immutable: get all those nice processes
+  - aka version number
+- careful replacement (CR) accross identities?
+Cross record
+CR prediactable across linearizable stores, unpredictable across non-linearizable
+
+Only have some of the system strongly consistent: rest available
+- immutable data and strongly consistent relations
+
+Shopping cart: fast, could be wrong
+
+Product catalog: gotta tell everyone the new info
+- want to respond fast
+- updates can be whenever
+- impl. as big cache
+ 
+Search: have to ask every shard
+- don't want anyone being slow
+
+Use right tool for the right job
+- giving presentations for 35 years, building DB for 41
+- takeaways:
+0 Careful replacement: don't lose stuff
+1 most scalable computing comprises microservices with stateless interfaces
+2 session vs durable in state
+3 right now vs right
+
+tl;dr: apparently salesforce is hiring via FutureForce
+
+anything that will never come back (besides disco?)
+- distributed transactions
+
+challenges: really old and big systems 
+
+ 
